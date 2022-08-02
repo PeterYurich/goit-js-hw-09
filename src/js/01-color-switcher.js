@@ -1,6 +1,9 @@
 function getRandomHexColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
+import Notiflix from "notiflix";
+
+
 
 const bodyEl = document.querySelector('body')
 const startBtnEl = document.querySelector('[data-start]')
@@ -13,8 +16,7 @@ function startColorChanging() {
 
     startBtnEl.classList.add('running')
     const ColorChanging = () => {
-        color = getRandomHexColor()
-        console.log(color)
+        const color = getRandomHexColor()
         bodyEl.style.backgroundColor = color
     }
     intervalId = setInterval(ColorChanging, 1000)

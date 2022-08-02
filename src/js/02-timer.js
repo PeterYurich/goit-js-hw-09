@@ -31,7 +31,7 @@ function setDeltaTime () {
 
     const currentTime = new Date().getTime()
     const targetTime = new Date(inputEl.value).getTime()
-    deltaTime = targetTime - currentTime
+    const deltaTime = targetTime - currentTime
 
     if (deltaTime <= 0) {
         Notiflix.Report.failure('Please choose a date in the future', '','Try again')
