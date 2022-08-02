@@ -13,7 +13,7 @@ function createPromise(position, delay) {
   })
 }
 
-formEl = document.querySelector('.form')
+const formEl = document.querySelector('.form')
 formEl.addEventListener('submit', (e) => {
   e.preventDefault()
   const firstDelay = document.querySelector('[name="delay"]').value
