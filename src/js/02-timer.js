@@ -47,7 +47,7 @@ function setTimeRest () {
 
     if (deltaTime <= 1000) {
         clearInterval(intervalID) 
-        Notiflix.Report.info('Time is gone', 'You can restart the timer after rebooting the page')
+        Notiflix.Report.info('Time is gone', 'Reboot the page to set a new timer')
         daysFieldRef.textContent = addLeadingZero(0)
         hoursFieldRef.textContent = addLeadingZero(0)
         minutesFieldRef.textContent = addLeadingZero(0)
