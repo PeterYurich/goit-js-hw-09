@@ -38,9 +38,12 @@ function setDeltaTime () {
         return
     }
 
+    inputEl.disabled = true
+    startBtnEl.disabled = true
+
     const { days, hours, minutes, seconds } = convertMs(deltaTime)
 
-    daysFieldRef.textContent = addLeadingZero(days)
+        daysFieldRef.textContent = addLeadingZero(days)
     hoursFieldRef.textContent = addLeadingZero(hours)
     minutesFieldRef.textContent = addLeadingZero(minutes)
     secondsFieldRef.textContent = addLeadingZero(seconds)
