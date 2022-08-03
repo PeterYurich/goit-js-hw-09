@@ -12,6 +12,8 @@ const hoursFieldRef = document.querySelector('[data-hours]')
 const minutesFieldRef = document.querySelector('[data-minutes]')
 const secondsFieldRef = document.querySelector('[data-seconds]')
 
+let intervalID = null
+
 const options = {
     enableTime: true,
     time_24hr: true,
@@ -27,31 +29,41 @@ function addLeadingZero (value) {
     return String(value).padStart(2, '0')
 }
 
-function setDeltaTime () {
-
+function setTimeRest () {
     const currentTime = new Date().getTime()
     const targetTime = new Date(inputEl.value).getTime()
     const deltaTime = targetTime - currentTime
-
-    if (deltaTime <= 0) {
-        Notiflix.Report.failure('Please choose a date in the future', '','Try again')
-        return
-    }
+    console.log(deltaTime)
 
     inputEl.disabled = true
     startBtnEl.disabled = true
 
     const { days, hours, minutes, seconds } = convertMs(deltaTime)
 
-        daysFieldRef.textContent = addLeadingZero(days)
+    daysFieldRef.textContent = addLeadingZero(days)
     hoursFieldRef.textContent = addLeadingZero(hours)
     minutesFieldRef.textContent = addLeadingZero(minutes)
     secondsFieldRef.textContent = addLeadingZero(seconds)
+
+    if (deltaTime <= 0) {
+        clearInterval(intervalID) 
+        Notiflix.Report.info('Time is gone', 'You can restart the timer after rebooting the page')
+        daysFieldRef.textContent = addLeadingZero(0)
+        hoursFieldRef.textContent = addLeadingZero(0)
+        minutesFieldRef.textContent = addLeadingZero(0)
+        secondsFieldRef.textContent = addLeadingZero(0)
+        return
+    }
 }
 
 
 startBtnEl.addEventListener('click', () => {
-    setInterval(setDeltaTime, 1000)
+
+    if (new Date > new Date(inputEl.value)) {
+        Notiflix.Report.failure('Please choose a date in the future', '','Try again')
+        return
+    };
+    intervalID = setInterval(setTimeRest, 1000)
 })
 
 
