@@ -45,7 +45,7 @@ function setTimeRest () {
     minutesFieldRef.textContent = addLeadingZero(minutes)
     secondsFieldRef.textContent = addLeadingZero(seconds)
 
-    if (deltaTime <= 0) {
+    if (deltaTime <= 1000) {
         clearInterval(intervalID) 
         Notiflix.Report.info('Time is gone', 'You can restart the timer after rebooting the page')
         daysFieldRef.textContent = addLeadingZero(0)
@@ -58,7 +58,6 @@ function setTimeRest () {
 
 
 startBtnEl.addEventListener('click', () => {
-
     if (new Date > new Date(inputEl.value)) {
         Notiflix.Report.failure('Please choose a date in the future', '','Try again')
         return
